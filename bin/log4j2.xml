@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+ 
+<!-- Author:  Crunchify.com  -->
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+		</Console>
+ 
+		<RollingFile name="RollingFile" filename="log/sistema/${date:dd-MM-yyyy-HH-mm}.log"
+			filepattern="${logPath}/%d{YYYYMMddHHmmss}-fargo.log">
+			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+			
+			<filters>
+				<ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="debug" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+			</filters>
+		</RollingFile>
+		
+		<RollingFile name="RollingFile2" filename="log/datos/${date:dd-MM-yyyy-HH-mm}.log"
+			filepattern="${logPath}/%d{YYYYMMddHHmmss}-fargo.log" >
+			<PatternLayout pattern="%msg %d{HH:mm:ss}%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			
+			<DefaultRolloverStrategy max="20" />
+			<filters>
+				<ThresholdFilter level="fatal" onMatch="ACCEPT" onMismatch="DENY"/>
+				<ThresholdFilter level="info" onMatch="DENY" onMismatch="DENY"/>
+				<ThresholdFilter level="warn" onMatch="DENY" onMismatch="DENY"/>
+			</filters>
+		</RollingFile>
+ 
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile"/>
+			<AppenderRef ref="RollingFile2"/>
+		</Root>
+	</Loggers>
+</Configuration>

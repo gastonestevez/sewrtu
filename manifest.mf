@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: main.Main
+Class-Path: RXTXcomm.jar log4j-core-2.3.jar log4j-api-2.3.jar log4j-1.2-api-2.3.jar jfreechart-1.0.19.jar jcommon-1.0.23.jar
+Library-Path: lib/rxtxParallel.dll lib/rxtxSerial.dll res/logocnea.gif lib/librxtxParallel.so lib/librxtxSerial.so
